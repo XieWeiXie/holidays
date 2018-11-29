@@ -62,23 +62,23 @@ true
 
 ## FetchAll
 
-> get all holidays in chinese (2010 ~ 2019)
+> get all holidays in china (2010 ~ 2019)
 
 ## FetchByChName(year int, name string)
 
-> get holidays in chinese search by year and chinese name
+> get holidays in china search by year and chinese name
 
 ## FetchByEnName(year int, name string)
 
-> get holidays in chinese search by year and english name
+> get holidays in china search by year and english name
 
 ## FetchByMonth(year int, month int)
 
-> get holidays in chinese search by year and month
+> get holidays in china search by year and month
 
 ## FetchByYear(year int)
 
-> get holidays in chinese search by year
+> get holidays in china search by year
 
 ## FetchMonthHolidayCount(year int, month int)
 
