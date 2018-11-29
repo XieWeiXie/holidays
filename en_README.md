@@ -2,13 +2,20 @@
 
 > A simple package of chinese holidays
 
+
+## Installation
+
+```
+go get 	"github.com/wuxiaoxiaoshen/holidays/holiday"
+```
+
 ## Simple Example
 
 ```
 package main
 import (
 	"fmt"
-	"holidays/holiday"
+	"github.com/wuxiaoxiaoshen/holidays/holiday"
 )
 
 func main() {
@@ -25,7 +32,7 @@ func main() {
 package main
 import (
 	"fmt"
-	"holidays/holiday"
+	"github.com/wuxiaoxiaoshen/holidays/holiday"
 )
 func main(){
 	h2 := holidays.FetchMonthHolidayCount(2018, 10)
@@ -40,7 +47,7 @@ func main(){
 package main
 import (
 	"fmt"
-	"holidays/holiday"
+	"github.com/wuxiaoxiaoshen/holidays/holiday"
 )
 func main(){
 	h2 := holidays.FetchMonthHolidayCount(2018, 10)

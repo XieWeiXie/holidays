@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"holidays/holiday"
+
+	"github.com/wuxiaoxiaoshen/holidays/holiday"
 )
 
 func main() {
