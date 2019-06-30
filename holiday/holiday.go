@@ -19,7 +19,7 @@ func FetchByYear(year int) []history.OneCollection {
 	if year > nowYear+1 {
 		return nil
 	}
-	index = nowYear + 1 - year
+	index = nowYear - year
 	return history.FetchCollectionYearHistory().Data[index]
 
 }
