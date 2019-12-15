@@ -1,7 +1,7 @@
 package holidays
 
 import (
-	"holidays/history"
+	"github.com/wuxiaoxiaoshen/holidays/history"
 	"strings"
 	"time"
 )
