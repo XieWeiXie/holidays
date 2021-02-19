@@ -64,6 +64,7 @@ func (y *YearCollection) Add(one OneCollection) {
 func FetchCollectionYearHistory() CollectionYearHistory {
 	return CollectionYearHistory{
 		Data: [][]OneCollection{
+			holiday2021,
 			holiday2020,
 			holiday2019,
 			holiday2018,
