@@ -16,7 +16,7 @@ func TestFetchByYear(t *testing.T) {
 		{
 			year: 2021,
 		}, {
-			year: 2022,
+			year: 2019,
 		},
 	}
 	for _, test := range tests {
