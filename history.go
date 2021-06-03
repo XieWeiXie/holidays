@@ -1,84 +1,4 @@
-package history
-
-const (
-	NewYearDay = iota
-	SpringFestivalDay
-	TombSweepingDay
-	LaborDay
-	DragonBoatFestivalDay
-	NationalDay
-	MidAutumnFestivalDay
-)
-
-var ChHolidays = [...]string{
-	"元旦",
-	"春节",
-	"清明节",
-	"劳动节",
-	"端午节",
-	"中秋节",
-	"国庆节",
-}
-var EnHolidays = [...]string{
-	"New Year\\'s Day",
-	"Spring Festival",
-	"Tomb-sweeping Day",
-	"Labour Day",
-	"Dragon Boat Festival",
-	"Mid-autumn Festival",
-	"National Day",
-}
-
-type CollectionYearHistory struct {
-	Data [][]OneCollection `json:"data"`
-}
-
-func (h *CollectionYearHistory) Add(one []OneCollection) {
-	h.Data = append(h.Data, one)
-}
-
-type OneCollection struct {
-	Start  string `json:"start"`
-	End    string `json:"end"`
-	ChName string `json:"ch_name"`
-	EnName string `json:"en_name"`
-}
-
-func NewOneCollection(chName string, enName string, start string, end string) *OneCollection {
-	return &OneCollection{
-		Start:  start,
-		End:    end,
-		ChName: chName,
-		EnName: enName,
-	}
-}
-
-type YearCollection struct {
-	Data []OneCollection `json:"data"`
-}
-
-func (y *YearCollection) Add(one OneCollection) {
-	y.Data = append(y.Data, one)
-}
-
-func FetchCollectionYearHistory() CollectionYearHistory {
-	return CollectionYearHistory{
-		Data: [][]OneCollection{
-			holiday2021,
-			holiday2020,
-			holiday2019,
-			holiday2018,
-			holiday2017,
-			holiday2016,
-			holiday2015,
-			holiday2014,
-			holiday2013,
-			holiday2012,
-			holiday2011,
-			holiday2010,
-		},
-	}
-}
+package holidays
 
 var holiday2021 = []OneCollection{
 	{
@@ -604,3 +524,4 @@ var holiday2010 = []OneCollection{
 		EnName: EnHolidays[NationalDay],
 	},
 }
+

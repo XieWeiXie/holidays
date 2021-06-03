@@ -1,38 +1,36 @@
 package holidays
 
 import (
-	"github.com/wuxiaoxiaoshen/holidays/history"
 	"strings"
 	"time"
 )
 
 // FetchAll get all holidays in china
-func FetchAll() history.CollectionYearHistory {
-	return history.FetchCollectionYearHistory()
-
+func FetchAll() []IHoliday {
+	return NewCompose().Holidays
 }
 
 // FetchByYear get holidays by year in china
-func FetchByYear(year int) []history.OneCollection {
+func FetchByYear(year int) IHoliday {
 	var index int
 	nowYear, _, _ := time.Now().Date()
 	if year > nowYear+1 {
 		return nil
 	}
 	index = nowYear - year
-	return history.FetchCollectionYearHistory().Data[index]
+	return NewCompose().Holidays[index]
 
 }
 
 // FetchByMonth get holidays by year and month in china
-func FetchByMonth(year int, month int) []history.OneCollection {
+func FetchByMonth(year int, month int) []OneCollection {
 	if month < 1 || month > 12 {
 		return nil
 
 	}
 	collections := FetchByYear(year)
-	var data []history.OneCollection
-	for _, collection := range collections {
+	var data []OneCollection
+	for _, collection := range collections.Get() {
 		collectionTime, _ := time.Parse("2006/01/02", collection.End)
 		if int(collectionTime.Month()) == month {
 			data = append(data, collection)
@@ -42,10 +40,10 @@ func FetchByMonth(year int, month int) []history.OneCollection {
 }
 
 // FetchByChName get holidays by year and chinese name in china
-func FetchByChName(year int, name string) []history.OneCollection {
+func FetchByChName(year int, name string) []OneCollection {
 	collections := FetchByYear(year)
-	var data []history.OneCollection
-	for _, collection := range collections {
+	var data []OneCollection
+	for _, collection := range collections.Get() {
 		if strings.Contains(collection.ChName, name) {
 			data = append(data, collection)
 		}
@@ -55,10 +53,10 @@ func FetchByChName(year int, name string) []history.OneCollection {
 }
 
 // FetchByEnName get holidays by year and english name in china
-func FetchByEnName(year int, name string) []history.OneCollection {
+func FetchByEnName(year int, name string) []OneCollection {
 	collections := FetchByYear(year)
-	var data []history.OneCollection
-	for _, collection := range collections {
+	var data []OneCollection
+	for _, collection := range collections.Get() {
 		if strings.Contains(collection.EnName, name) {
 			data = append(data, collection)
 		}
@@ -66,7 +64,7 @@ func FetchByEnName(year int, name string) []history.OneCollection {
 	return data
 }
 
-// IsHoliday: judge date is holiday or not
+// IsHoliday judge date is holiday or not
 func IsHoliday(value string) bool {
 	collectionTime, err := time.Parse("2006/01/02", value)
 	if err != nil {
@@ -77,7 +75,7 @@ func IsHoliday(value string) bool {
 		return false
 	}
 	collections := FetchByYear(collectionTime.Year())
-	for _, collection := range collections {
+	for _, collection := range collections.Get() {
 		startDate, _ := getDate(collection.Start)
 		endDate, _ := getDate(collection.End)
 		if collectionTime.Unix() >= startDate.Unix() && collectionTime.Unix() <= endDate.Unix() {
@@ -88,7 +86,7 @@ func IsHoliday(value string) bool {
 
 }
 
-// IsWorkDay: judge date is work day or not
+// IsWorkDay judge date is work day or not
 func IsWorkDay(value string) bool {
 	if IsHoliday(value) {
 		return false
@@ -104,22 +102,22 @@ func IsWorkDay(value string) bool {
 	return true
 }
 
-// IsWeekDay: judge date is week day or not
+// IsWeekDay judge date is week day or not
 func IsWeekDay(value string) bool {
 	return !IsWorkDay(value) && !IsHoliday(value)
 }
 
-// FetchYearHolidayCount:  count day of one year holidays
+// FetchYearHolidayCount count day of one year holidays
 func FetchYearHolidayCount(year int) int {
 	collections := FetchByYear(year)
 	var count int
-	for _, collection := range collections {
+	for _, collection := range collections.Get() {
 		count += countOneHoliday(collection)
 	}
 	return count
 }
 
-// FetchMonthHolidayCount: count day in one month of one year holidays
+// FetchMonthHolidayCount count day in one month of one year holidays
 func FetchMonthHolidayCount(year int, month int) int {
 	collections := FetchByMonth(year, month)
 	var count int
