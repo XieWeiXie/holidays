@@ -5,6 +5,7 @@ import (
 	"time"
 )
 
+
 // FetchAll get all holidays in china
 func FetchAll() []IHoliday {
 	return NewCompose().Holidays
