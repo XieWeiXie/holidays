@@ -37,7 +37,7 @@
 ### FetchLunarDay()
 > 所有农历节日
 
-## GuessLunarByMonth(month int)
+### GuessLunarByMonth(month int)
 > 通过月份查看农历节日
 
 ---
