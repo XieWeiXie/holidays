@@ -34,6 +34,12 @@
 ### IsWeekDay(date string)
 > 判断某天是否是周末，某天的格式是： "2006/01/02"
 
+### FetchLunarDay()
+> 所有农历节日
+
+## GuessLunarByMonth(month int)
+> 通过月份查看农历节日
+
 ---
 <使用愉快...>
 

@@ -150,3 +150,28 @@ func TestIsHoliday(t *testing.T) {
 		fmt.Println(IsWeekDay(test.value))
 	}
 }
+
+func TestFetchLunarDay(t *testing.T) {
+	for _, i := range FetchLunarDay() {
+		fmt.Println(i.When(), " || ", i.Desc())
+	}
+}
+
+func TestGuessLunarByMonth(t *testing.T) {
+	tests := []struct {
+		month int
+	}{
+		{
+			month: 1,
+		},
+		{
+			month: 12,
+		},
+	}
+	for _, i := range tests {
+		res := GuessLunarByMonth(i.month)
+		for _, j := range res {
+			fmt.Println(j.When(), " || ", j.Desc())
+		}
+	}
+}

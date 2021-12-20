@@ -126,3 +126,16 @@ func FetchMonthHolidayCount(year int, month int) int {
 	}
 	return count
 }
+
+// FetchLunarDay fetch all lunar day in China
+func FetchLunarDay() []TraditionalDay {
+	return LunarDay().Days
+}
+
+// GuessLunarByMonth guess lunar day by month in China
+func GuessLunarByMonth(month int) []TraditionalDay {
+	if month <= 0 || month > 12 {
+		return LunarDay().CurrentMonth()
+	}
+	return LunarDay().GuessWithMonth(month)
+}

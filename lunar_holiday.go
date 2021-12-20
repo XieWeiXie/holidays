@@ -1,5 +1,7 @@
 package holidays
 
+import "time"
+
 type Traditional struct {
 	Name   string
 	Detail string
@@ -56,3 +58,53 @@ var (
 		Detail: "8th day of the 12th lunar month",
 	}
 )
+
+type lunar struct {
+	Days []TraditionalDay
+}
+
+func (l lunar) TraditionDays() []TraditionalDay {
+	return l.Days
+}
+
+func (l lunar) GuessWithMonth(month int) []TraditionalDay {
+	switch time.Month(month) {
+	case time.January:
+		return []TraditionalDay{chineseNewYear, lanternFestival}
+	case time.April:
+		return []TraditionalDay{qingMingFestival}
+	case time.May:
+		return []TraditionalDay{dragonBoatFestival}
+	case time.June:
+		return []TraditionalDay{doubleSeventhDay}
+	case time.August:
+		return []TraditionalDay{midAutumnDay}
+	case time.September:
+		return []TraditionalDay{doubleNinthDay}
+	case time.December:
+		return []TraditionalDay{winterSolstice, labaFestival}
+	default:
+		return nil
+	}
+}
+
+func (l lunar) CurrentMonth() []TraditionalDay {
+	month := time.Now().Month()
+	return l.GuessWithMonth(int(month))
+}
+
+func LunarDay() lunar {
+	return lunar{
+		Days: []TraditionalDay{
+			chineseNewYear,
+			lanternFestival,
+			qingMingFestival,
+			dragonBoatFestival,
+			doubleSeventhDay,
+			midAutumnDay,
+			doubleNinthDay,
+			winterSolstice,
+			labaFestival,
+		},
+	}
+}

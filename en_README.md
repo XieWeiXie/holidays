@@ -100,3 +100,11 @@ true
 
 > is date with format(2006/01/02) workday?
 
+## FetchLunarDay
+
+> fetch all lunar day in China
+
+
+## GuessLunarByMonth
+
+> guess lunar day by month in China
