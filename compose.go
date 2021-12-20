@@ -2,7 +2,22 @@ package holidays
 
 import (
 	"errors"
+	"time"
 )
+
+func getDate(value string) (time.Time, error) {
+	valueTime, err := time.Parse("2006/01/02", value)
+	if err != nil {
+		return time.Time{}, err
+	}
+	return valueTime, nil
+}
+
+func countOneHoliday(value OneCollection) int {
+	start, _ := time.Parse("2006/01/02", value.Start)
+	end, _ := time.Parse("2006/01/02", value.End)
+	return int(end.Sub(start).Hours()/24) + 1
+}
 
 type OneCollection struct {
 	Start  string `json:"start"`
@@ -41,12 +56,11 @@ func WithChName(chName string) CollectionOption {
 	}
 }
 
-func WithEnName(enName string) CollectionOption{
+func WithEnName(enName string) CollectionOption {
 	return func(c *OneCollection) {
 		c.EnName = enName
 	}
 }
-
 
 type IHoliday interface {
 	Set(data []OneCollection) error
@@ -63,24 +77,22 @@ func newHoliday(data []OneCollection) *holiday {
 	}
 }
 
-func (h *holiday) Set(data []OneCollection)(err error){
+func (h *holiday) Set(data []OneCollection) (err error) {
 	if len(data) == 0 {
 		return errors.New("data is empty")
 	}
 	h.data = data
 	return
 }
-func (h *holiday) Get() []OneCollection{
+func (h *holiday) Get() []OneCollection {
 	return h.data
 }
-
-
 
 type Compose struct {
 	Holidays []IHoliday
 }
 
-func (c Compose) Add(iHoliday IHoliday){
+func (c Compose) Add(iHoliday IHoliday) {
 	if len(c.Holidays) == 0 {
 		c.Holidays = make([]IHoliday, 0)
 		c.Holidays = append(c.Holidays, iHoliday)
@@ -91,6 +103,7 @@ func (c Compose) Add(iHoliday IHoliday){
 func NewCompose() *Compose {
 	return &Compose{
 		Holidays: []IHoliday{
+			newHoliday(holiday2022),
 			newHoliday(holiday2021),
 			newHoliday(holiday2020),
 			newHoliday(holiday2019),

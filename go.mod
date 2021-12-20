@@ -1,3 +1,3 @@
-module github.com/wuxiaoxiaoshen/holidays
+module github.com/xiewei/holidays
 
 go 1.13

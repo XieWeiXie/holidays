@@ -5,13 +5,12 @@ import (
 	"time"
 )
 
-
-// FetchAll get all holidays in china
+// FetchAll get all holidays in China
 func FetchAll() []IHoliday {
 	return NewCompose().Holidays
 }
 
-// FetchByYear get holidays by year in china
+// FetchByYear get holidays by year in China
 func FetchByYear(year int) IHoliday {
 	var index int
 	nowYear, _, _ := time.Now().Date()
@@ -23,7 +22,7 @@ func FetchByYear(year int) IHoliday {
 
 }
 
-// FetchByMonth get holidays by year and month in china
+// FetchByMonth get holidays by year and month in China
 func FetchByMonth(year int, month int) []OneCollection {
 	if month < 1 || month > 12 {
 		return nil
@@ -40,7 +39,7 @@ func FetchByMonth(year int, month int) []OneCollection {
 	return data
 }
 
-// FetchByChName get holidays by year and chinese name in china
+// FetchByChName get holidays by year and chinese name in China
 func FetchByChName(year int, name string) []OneCollection {
 	collections := FetchByYear(year)
 	var data []OneCollection
@@ -53,7 +52,7 @@ func FetchByChName(year int, name string) []OneCollection {
 
 }
 
-// FetchByEnName get holidays by year and english name in china
+// FetchByEnName get holidays by year and english name in China
 func FetchByEnName(year int, name string) []OneCollection {
 	collections := FetchByYear(year)
 	var data []OneCollection

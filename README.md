@@ -8,23 +8,29 @@
 ## API List
 
 ###  FetchAll
-> 获取当前公布的从 2010 ~ 2019 的官方节假日安排
+> 获取当前公布的从 2010 ~ 至今 的官方节假日安排
 
 ### FetchByYear(year int)
 > 获取当前公布的节假日安排，按年份查询
 
 ### FetchByMonth(year int, month int)
 > 获取当前公布的节假日安排，按年份和月份查询
+
 ### FetchByChName(year int, name string)
 > 获取当前公布的节假日安排，按年份和中文名称查询
+
 ### FetchByEnName(year int, name string)
 > 获取当前节假日安排，按年份和英文名称查询
+
 ### FetchYearHolidayCount(year int)
 > 获取某年存在多少天的假期
+
 ### IsHoliday(date string)
 > 判断某天是否是节假日，某天的格式是："2006/01/02"
+
 ### IsWorkDay(date string)
 > 判断某天是否是工作日，某天的格式是： "2006/01/02"
+
 ### IsWeekDay(date string)
 > 判断某天是否是周末，某天的格式是： "2006/01/02"
 
