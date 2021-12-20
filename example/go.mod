@@ -1,3 +1,3 @@
-module github.com/xiewei/example
+module github.com/XieWeiXie/example
 
 go 1.16
