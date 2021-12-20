@@ -6,7 +6,7 @@
 ## Installation
 
 ```
-go get 	"github.com/wuxiaoxiaoshen/holidays/holiday"
+go get 	"github.com/XieWeiXie/holidays"
 ```
 
 ## Simple Example
